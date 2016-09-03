@@ -44,9 +44,7 @@ const styles = StyleSheet.create({
   preview: {
     flex: 1,
     justifyContent: 'flex-end',
-    alignItems: 'stretch',
-    height: Dimensions.get('window').height,
-    width: Dimensions.get('window').width
+    alignItems: 'stretch'
   },
   capture: {
     flex: 1,
