@@ -11,22 +11,12 @@ import {
   Text,
   View
 } from 'react-native';
-
-class CameraApp extends Component {
+var Home = require('./ImageGallery');
+class ListViewDemo extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <Home>
+      </Home>
     );
   }
 }
@@ -50,4 +40,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('CameraApp', () => CameraApp);
+AppRegistry.registerComponent('CameraApp', () => ListViewDemo);
