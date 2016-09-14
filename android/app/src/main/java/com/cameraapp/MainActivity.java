@@ -1,6 +1,7 @@
 package com.cameraapp;
 
 import com.facebook.react.ReactActivity;
+import io.realm.react.RealmReactPackage;
 import com.lwansbrough.RCTCamera.*;
 
 public class MainActivity extends ReactActivity {
