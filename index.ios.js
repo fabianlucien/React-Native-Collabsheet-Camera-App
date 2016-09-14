@@ -15,8 +15,12 @@ var Home = require('./ImageGallery');
 class ListViewDemo extends Component {
   render() {
     return (
-      <Home>
-      </Home>
+      <View style={{flexDirection: 'column', flex: 1, padding: 20}}>
+        <View style={{backgroundColor: 'blue', flex: 0.5}} />
+        <View style={{backgroundColor: 'red', flex: 0.5}} />
+      </View>
+      // <Home>
+      // </Home>
     );
   }
 }

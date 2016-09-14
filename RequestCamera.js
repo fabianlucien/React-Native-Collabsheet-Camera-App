@@ -13,9 +13,11 @@ import {
 import Camera from 'react-native-camera';
 var UIImagePickerManager = require('react-native-image-picker');
 var Platform = require('react-native').Platform;
+let Realm = require('realm');
+var Home = require('./ImageGallery');
 
 var options = {
-  title: 'Select Avatar',
+  title: null,
   customButtons: [
     {name: 'fb', title: 'Choose Photo from Facebook'},
   ],
@@ -25,6 +27,27 @@ var options = {
   }
 };
 
+function storeImage(location) {
+
+  console.log('this is the location:')
+  console.log(location);
+
+    // let realm = new Realm({
+    //   schema: [{name: 'Photo', properties: {id: 'int', location: 'string'}}]
+    // })
+    //
+    // let allPhotos = realm.objects('Photo');
+    //
+    // realm.write(() => {
+    //   realm.delete(allPhotos);
+    //   realm.create('Photo', {id: 1, location: location})
+    // })
+    //
+    // for (var i = 0; i < allPhotos.length; i++){
+    //   console.log(allPhotos[i].location);
+    // }
+  }
+
 var AwesomeProject = React.createClass({
   // Set the initial state
   getInitialState: function() {
@@ -33,7 +56,7 @@ var AwesomeProject = React.createClass({
     };
   },
 
-  test: function() {
+  requestCamera: function() {
           UIImagePickerManager.launchCamera(options, (response) => {
             console.log('Response = ', response);
 
@@ -48,55 +71,65 @@ var AwesomeProject = React.createClass({
             }
             else {
               // You can display the image using either data...
-              const source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};
+              // var source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};
 
               // or a reference to the platform specific asset location
               if (Platform.OS === 'ios') {
-                const source = {uri: response.uri.replace('file://', ''), isStatic: true};
+                var source = {uri: response.uri.replace('file://', ''), isStatic: true};
               } else {
-                const source = {uri: response.uri, isStatic: true};
+                var source = {uri: response.uri, isStatic: true};
               }
               this.setState({
                 avatarSource: source
               });
+              console.log(source.uri) // gives only the location
+
             }
         });
   },
 
   render: function() {
+
     return (
       <View style={styles.container}>
-      <Image source={this.state.avatarSource} style={styles.image} />
-        <TouchableHighlight onPress={this.test}>
-          <Text>Select an whut...</Text>
-        </TouchableHighlight>
+
+        {/* Upper view contains a TouchableHighlight to open the camera.  */}
+
+        <View style={styles.cameraView}>
+            <TouchableHighlight style={styles.openCamera} onPress={this.requestCamera}>
+              <Text style={styles.cameraText}>Select an whut...</Text>
+            </TouchableHighlight>
+        </View>
+
+        {/* Lower view contains a TouchableHighlight to show the results.  */}
+
+        <View style={styles.photos}>
+          <Image source={this.state.avatarSource} style={styles.image} />
+        </View>
+
       </View>
     );
   }
 });
 
 var styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  container: { flexDirection: 'column', flex: 1, padding: 20},
+  cameraView: {
+    flex: .5,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'red',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  openCamera: {
+    flex: 1
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-
   image: {
     height: 100,
     width: 100
-  }
+  },
+  photos: {
+    backgroundColor: 'blue',
+    flex: 0.5
+  },
 });
 
 AppRegistry.registerComponent('CameraApp', () => AwesomeProject)

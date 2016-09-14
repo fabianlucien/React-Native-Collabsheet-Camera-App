@@ -8,6 +8,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 var superheroArray = ["Superman","Batman","Wonder Woman","The Flash","Aquaman","Green Lantern","Superman","Batman","Wonder Woman","The Flash","Aquaman","Green Lantern","Superman","Batman","Wonder Woman","The Flash","Aquaman","Green Lantern","Superman","Batman","Wonder Woman","The Flash","Aquaman","Green Lantern"];
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -20,10 +21,10 @@ class Home extends Component {
   renderRow(rowData, sectionID, rowID) {
     return (
       <TouchableHighlight underlayColor='#dddddd' style={{height:44}}>
-      <View>
-      <Text style={{fontSize: 20, color: '#000000'}} numberOfLines={1}>{rowData}</Text>
-      <View style={{height: 1, backgroundColor: '#dddddd'}}/>
-      </View>
+        <View>
+          <Text style={{fontSize: 20, color: '#000000'}} numberOfLines={1}>{rowData}</Text>
+          <View style={{height: 1, backgroundColor: '#dddddd'}}/>
+        </View>
       </TouchableHighlight>
     );
   }

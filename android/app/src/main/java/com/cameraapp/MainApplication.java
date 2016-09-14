@@ -3,6 +3,7 @@ package com.cameraapp;
 import android.app.Application;
 import android.util.Log;
 
+import io.realm.react.RealmReactPackage;
 import com.facebook.react.ReactApplication;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.facebook.react.ReactInstanceManager;
@@ -27,6 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
           new RCTCameraPackage(),
+          new RealmReactPackage(),
           new ImagePickerPackage() // <-- added to get camera
       );
     }
